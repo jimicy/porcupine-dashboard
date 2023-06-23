@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.gist iframe.render-viewer {
+  height: 1000px !important;
+}
