@@ -35,9 +35,8 @@ interface LinkItemProps {
   href: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: "Home", icon: FiHome, href: "/" },
-  { name: "Clinical Trend Charts", icon: FiTrendingUp, href: "/trends" },
-  { name: "Clinical  Realtime Map", icon: FiMap, href: "/map" },
+  { name: "Clinical  Realtime Map", icon: FiMap, href: "/" },
+  { name: "Clinical Trend Charts", icon: FiTrendingUp, href: "/charts" },
   {
     name: "CDC Case Monitoring",
     icon: FiBarChart,
