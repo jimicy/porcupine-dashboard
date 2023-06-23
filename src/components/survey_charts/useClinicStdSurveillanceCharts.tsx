@@ -19,10 +19,12 @@ import {
   Tooltip,
   Legend,
   BarElement,
+  ArcElement,
 } from "chart.js";
-import { Line, Bar } from "react-chartjs-2";
+import { Line, Bar, Pie } from "react-chartjs-2";
 
 ChartJS.register(
+  ArcElement,
   CategoryScale,
   LinearScale,
   PointElement,
@@ -91,7 +93,7 @@ export function ClinicStdSurveillanceCharts() {
       },
       title: {
         display: true,
-        text: `bar chart`,
+        text: `Survey breakdown by biological sex`,
       },
     },
   };
@@ -124,13 +126,134 @@ export function ClinicStdSurveillanceCharts() {
     datasets: dataset,
   };
 
+  // Pie chart
+  const pieData = {
+    labels: [
+      "Lesbian",
+      "Heterosexual",
+      "Gay",
+      "Bisexual",
+      "Pansexual",
+      "Other",
+    ],
+    datasets: [
+      {
+        label: "Breakdown of sexual orientation",
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const sentimentBarOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top" as const,
+      },
+      title: {
+        display: true,
+        text: `Porcupine Chat Patient Sentiment Analysis`,
+      },
+    },
+  };
+
+  const sentimentData = {
+    labels,
+    datasets: [
+      {
+        label: "sentiment score",
+        data: [2, 5, 6, 6, 7],
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+    ],
+  };
+
   return (
     <>
       <Box
         style={{
           width: "100%",
           position: "absolute",
-          top: "51%",
+          display: "flex",
+        }}
+      >
+        <Card
+          style={{
+            aspectRatio: "2/1",
+            width: "20%",
+          }}
+        >
+          <CardBody>
+            <Pie data={pieData} />
+          </CardBody>
+        </Card>
+        <Card
+          style={{
+            aspectRatio: "2/1",
+            width: "40%",
+            marginLeft: 15,
+          }}
+        >
+          <CardBody>
+            <Bar
+              options={sentimentBarOptions}
+              data={sentimentData}
+              style={{ width: "100%", height: "100%" }}
+            />
+          </CardBody>
+        </Card>
+        <Card
+          style={{
+            aspectRatio: "2/1",
+            width: "20%",
+            padding: 15,
+            marginLeft: 15,
+          }}
+        >
+          <h1>Example of sentiment analysis:</h1>
+          <p>
+            "I was afraid and young. At the time, they were giving large doses
+            of AZT [an anti-HIV drug also known as ZDV, or zidovudine]. It was
+            my only option, and they wanted me to sign a waiver that said it
+            could damage my internal organs. I was scared. I almost died because
+            of the decision not to take meds."
+          </p>
+          <br />
+          <p>
+            GPT: Performing sentiment analysis on the given text from 1 to 10,
+            where 1 is negative, 5 is neutral, and 10 is very positive, the
+            sentiment score would be: 3. The text expresses negative emotions
+            such as fear, being scared, and the mention of almost dying due to a
+            decision. These elements contribute to a predominantly negative
+            sentiment in the text, resulting in a sentiment score closer to the
+            negative end of the scale.
+          </p>
+        </Card>
+      </Box>
+
+      <Box
+        style={{
+          width: "100%",
+          position: "absolute",
+          top: "40%",
           display: "flex",
         }}
       >

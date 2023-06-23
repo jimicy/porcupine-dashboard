@@ -66,7 +66,7 @@ export default function PointMap(props: {
           top: 0,
           bottom: 0,
           width: "100%",
-          height: "50%",
+          height: "100%",
         }}
       >
         <GeocoderControl
@@ -91,22 +91,6 @@ export default function PointMap(props: {
         <Source type="geojson" data={props.geoData}>
           <Layer {...pointDataLayer()} />
         </Source>
-
-        {/* <Source
-          type="vector"
-          tiles={[
-            "https://gis.data.census.gov/arcgis/rest/services/Hosted/VT_2021_040_00_PP_D1/VectorTileServer/tile/{z}/{y}/{x}.pbf",
-          ]}
-          promoteId={"GEOID"}
-        >
-          <Layer
-            id="counties-fill"
-            type="fill"
-            source={"counties"}
-            source-layer="County"
-            paint={{ "fill-opacity": 0.8, "fill-color": "grey" }}
-          />
-        </Source> */}
 
         {hoverInfo && (
           <div
